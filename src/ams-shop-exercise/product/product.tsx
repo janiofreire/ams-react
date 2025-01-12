@@ -4,9 +4,10 @@ export interface Product {
     price?: number;
     reviews?: ProductReview[];
     thumbnail?: string;
+    id:number;
 }
 
-interface ProductReview {
+export interface ProductReview {
     comment: string;
     reviewerEmail: string;
     reviewerName: string;

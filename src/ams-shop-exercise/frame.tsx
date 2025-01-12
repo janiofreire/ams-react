@@ -16,9 +16,6 @@ export function Frame(props: Props) {
     navigate("/productList");
   };
 
-
-
-
   return (
     <div>
         <button onClick={navigateToCheckout}>

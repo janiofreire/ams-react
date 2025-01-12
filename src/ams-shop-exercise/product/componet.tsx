@@ -1,6 +1,4 @@
 import {
-  Accordion,
-  Button,
   Card,
   Center,
   Container,
@@ -11,16 +9,20 @@ import {
   Space,
   Text
 } from "@mantine/core";
-import {Product} from "./product";
+import {ProductReview} from "./product";
+import {ReactNode} from "react"
 
+interface Props {
+    title: string;
+    description: string;
+    price: number;
+    reviews: ProductReview[];
+    thumbnail: string,
+    children?: ReactNode
+}
 
-export const ProductComponent = ({
-                                     title,
-                                     reviews,
-                                     description,
-                                     price,
-                                     thumbnail
-                                 }: Product) => {
+export const ProductComponent = (prop:Props)=> {
+    const {thumbnail,title,price,description,reviews}=prop;
     return (
         <Card shadow="sm" padding="lg" radius="md" withBorder>
             <Card.Section>
@@ -56,29 +58,8 @@ export const ProductComponent = ({
                     </Container>
                 ))}
             </Card.Section>
-
-            <Button color="blue" mt="md" radius="md">
-                Add to cart
-            </Button>
+            {prop.children}
+            
         </Card>
-    );
-};
-
-export const ProductListComponent =   (products: Product[]) => {
-    const items = products && products.map((item,index) => (
-        <Accordion.Item key={index} value={item.title || ''}>
-            <Accordion.Control icon={item.thumbnail}>{item.title} {item.price}</Accordion.Control>
-            <Accordion.Panel><ProductComponent title={item.title}
-                                               reviews={item.reviews}
-                                               thumbnail={item.thumbnail}
-                                               description={item.description}
-                                               price={item.price}/></Accordion.Panel>
-        </Accordion.Item>
-    ));
-
-    return (
-        <Accordion variant="contained" defaultValue="Apples">
-            {items}
-        </Accordion>
     );
 };
