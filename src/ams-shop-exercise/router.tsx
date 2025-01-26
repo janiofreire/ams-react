@@ -6,12 +6,11 @@ import { ProductList } from "./productList";
 
 import "@mantine/core/styles.css";
 import {Frame} from "./frame";
-import {useCarHook, useProductsHook} from "./helpers-and-hooks";
+import { useCarHook } from "./helpers-and-hooks";
 
 
 export function ShopRouter() {
     const { increment,decrement,totalProductsCar,carProducts,totalProdutos,products,activePage,isLoading,setPage} = useCarHook();
-    const prop2 = useProductsHook();
    return (
     <MantineProvider defaultColorScheme={"dark"}>
       <BrowserRouter basename={"/"}>
@@ -20,12 +19,7 @@ export function ShopRouter() {
             <Route path={"/productList"} element={<ProductList
                 decrement={decrement}
                 increment={increment}
-                carProducts={carProducts}
-                setPage={prop2.setPage}
-                products={prop2.products}
-                totalProdutos={prop2.totalProdutos}
-                activePage={prop2.activePage}
-                isLoading={prop2.isLoading}
+                carProducts={carProducts}               
             />} />
               <Route path={"/checkout"} element={<ProductList
                   decrement={decrement}

@@ -19,10 +19,10 @@ interface Props {
     decrement: any;
     carProducts:CarProduct[];
     products?:Product[];
-    isLoading:boolean;
-    totalProdutos:number;
-    activePage:number;
-    setPage:any;
+    isLoading?:boolean;
+    totalProdutos?:number;
+    activePage?:number;
+    setPage?:any;
 }
 
 interface Props2 {
@@ -66,7 +66,7 @@ export function ProductList(prop:Props) {
                             {items}
                         </Accordion>
                     )}
-                    <Pagination total={totalProdutos} value={activePage} onChange={setPage} mt="sm"  />
+                    <Pagination total={totalProdutos || 0} value={activePage} onChange={setPage} mt="sm"  />
                 </Center>
             )}
 

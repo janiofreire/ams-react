@@ -6,6 +6,7 @@
   "scripts": {
     "academy": "cross-env APP=academy webpack serve",
     "shop": "cross-env APP=shop webpack serve",
+    "shop2": "cross-env APP=shop2 webpack serve",
     "build": "npm run prettier && webpack",
     "prettier": "prettier --write . --log-level warn",
     "eslint": "eslint src/** --fix"
@@ -15,10 +16,12 @@
   "dependencies": {
     "@mantine/core": "7.15.3",
     "@mantine/hooks": "7.15.3",
-    "@tabler/icons": "^3.27.1",
+    "@tabler/icons-react": "3.28.1",
+    "immer": "10.1.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router": "7.0.2"
+    "react-router": "7.0.2",
+    "zustand": "4.5.2"
   },
   "devDependencies": {
     "@types/react": "19.0.1",
@@ -39,6 +42,6 @@
     "ts-loader": "9.5.1",
     "webpack": "5.97.1",
     "webpack-cli": "5.1.4",
-    "webpack-dev-server": "5.2.0"
+    "webpack-dev-server": "5.2.0"    
   }
 }
