@@ -3,6 +3,8 @@ import { Product } from "../../model/product";
 import { CarInteraction } from "./carInteraction";
 import { ProductDetail } from "./productDetail";
 import { stateCarStore, useCarStore } from "../../store/carStore";
+import { useState } from "react";
+import { carBusiness } from "../../business/carBusiness";
 
 interface Props3 {
     item:Product;
@@ -12,9 +14,6 @@ export function ProductViewer(prop:Props3){
     const { item,index} = prop;
     const decrement = stateCarStore.removeProdutFromCar;
     const increment = stateCarStore.addProdutToCar;
-    const carProducts = useCarStore((state) => state.produts);      
-    
-
     return (<>          
                 <Grid style={{ marginTop: '10px', borderStyle:'solid'}}>
                     <Grid.Col span={2}>  <Avatar src={item.thumbnail} radius="xl" size="lg" /></Grid.Col>
@@ -25,7 +24,7 @@ export function ProductViewer(prop:Props3){
                             decrement={decrement} 
                             increment={increment}
                             item={item}
-                            carProducts={carProducts}
+                            //quant={quant}
                         /></Grid.Col>
                     <Grid.Col span={12}>
                         <Center>
@@ -38,7 +37,8 @@ export function ProductViewer(prop:Props3){
                                                     decrement={decrement} 
                                                     increment={increment}
                                                     item={item}
-                                                    carProducts={carProducts}/>
+                                                    //quant={quant}
+                                                    />
                                                 </ProductDetail>
                                                 </Accordion.Panel>
                             </Accordion.Item>

@@ -1,6 +1,5 @@
 import { Accordion, Center, Container, Loader, Pagination } from "@mantine/core";
 import { Product } from "../../model/product";
-import { CarProduct } from "../../model/car";
 import { ProductViewer } from "./productViwer";
 
 
@@ -18,6 +17,7 @@ export function ProductList(prop:Props) {
                     <ProductViewer
                         item={item}
                         index={index}
+                        key={item.id}
                     />               
     ));
 

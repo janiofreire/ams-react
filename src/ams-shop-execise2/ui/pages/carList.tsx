@@ -5,7 +5,7 @@ import { ProductList } from "../components/productList";
 
 export function CarList() {
     const {activePage,products,setPage} = useCarHook();
-    const totaListaProdutos = useCarStore((state) => state.produts.length);
+    const totaListaProdutos = useCarStore.getState().produts.length;
     const totalPaginas = (totaListaProdutos/PAGE_SIZE)+(totaListaProdutos%PAGE_SIZE>0?1:0);
     if(activePage>totalPaginas){
       setPage(totalPaginas);

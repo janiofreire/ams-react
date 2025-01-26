@@ -1,6 +1,7 @@
 import { PAGE_SIZE } from "../global/constants";
 import { Car, CarProduct} from "../model/car";
 import { Product } from "../model/product";
+import { useCarStore } from "../store/carStore";
 
 
 export interface CarBusinessMutation{
@@ -9,13 +10,16 @@ export interface CarBusinessMutation{
 }
 
 export interface CarBusinessState{
-    getCarProductByPage(page: number,carProducts:CarProduct[]): Product[]
+    getCarProductByPage(page: number,carProducts:CarProduct[]): Product[];
+    getCarProductByProdut(carProducts:CarProduct[],product:Product):CarProduct;
+   
 }
 
 export interface CarBusiness extends CarBusinessMutation,CarBusinessState {}
 
 
 export class CarBusinessImpl implements CarBusiness{
+   
   
     addProdutToCar(product: Product,car:Car): Car {
         return this.executActionInCar(product,car,false);
@@ -65,7 +69,11 @@ export class CarBusinessImpl implements CarBusiness{
         const inintIndex = (activePage-1)*PAGE_SIZE;        
         return carProducts.slice(inintIndex,inintIndex+PAGE_SIZE).map(car => car.product);
     }
-    
-}
+
+    getCarProductByProdut(carProducts: CarProduct[], product: Product): CarProduct {
+        return carProducts.filter(car => car.product.id===product.id).at(0)|| {quant:0,product:product};
+    }
+
+    }
 
 export const carBusiness:CarBusiness = new CarBusinessImpl();
