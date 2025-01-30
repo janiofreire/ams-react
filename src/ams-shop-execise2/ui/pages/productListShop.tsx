@@ -9,7 +9,7 @@ export function ProductListShop() {
         products={b.products || []}
         setPage={b.setPage}
         totalProdutos={b.totalPaginas}
-     
+        isLoading={b.isLoading}
      />
             
    );

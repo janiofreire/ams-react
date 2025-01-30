@@ -29,7 +29,7 @@ export class CarBusinessImpl implements CarBusiness{
         return this.executActionInCar(product,car,true);
     }
 
-    countQuantProductCar(carProducts:CarProduct[],product:Product){
+    countQuantProductCar(carProducts:CarProduct[],product:Product):number{
         if(carProducts && product){
                 return carProducts.filter(cp => cp.product.id === product.id).reduce(
                     (quant,carProductAtual)=>

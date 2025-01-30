@@ -4,7 +4,7 @@ import { useCarStore } from "../../store/carStore";
 import { ProductList } from "../components/productList";
 
 export function CarList() {
-    const {activePage,products,setPage} = useCarHook();
+    const {activePage,products,setPage,isLoading} = useCarHook();
     const totaListaProdutos = useCarStore.getState().produts.length;
     const totalPaginas = (totaListaProdutos/PAGE_SIZE)+(totaListaProdutos%PAGE_SIZE>0?1:0);
     if(activePage>totalPaginas){
@@ -17,7 +17,7 @@ export function CarList() {
         products={products || []}
         setPage={setPage}
         totalProdutos={totalPaginas}
-     
+        isLoading={isLoading}
      />
             
    );

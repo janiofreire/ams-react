@@ -3,12 +3,9 @@ import { create} from 'zustand'
 import { produce } from "immer";
 
 import { StoreSet } from './store';
-import { carBusiness, CarBusinessMutation } from '../business/carBusiness';
+import { carBusiness } from '../business/carBusiness';
 import { Product } from '../model/product';
 import { Car } from '../model/car';
-import { PAGE_SIZE } from '../global/constants';
-
-
   
  export const init:Car={
     produts:[],
@@ -21,7 +18,9 @@ interface State extends Car{
     totalPaginas:number
 }
 
- interface Mutation extends CarBusinessMutation{
+ interface Mutation {
+    addProdutToCar(product:Product):void;
+    removeProdutFromCar(product:Product):void;
      reset(): void;
 } 
 
@@ -32,26 +31,23 @@ function updateStateWithCarValua(state:Car,car:Car){
 
  function mutations(set: StoreSet): Mutation {
      
-   function addProdutToCar(product:Product):Car{
-        let carLocal:Car=init;
-        set(
+   function addProdutToCar(product:Product):void{
+         set(
             produce((state: State) => {
                 const carLocal:Car= carBusiness.addProdutToCar(product,state);
                 updateStateWithCarValua(state,carLocal);
             })
         );
-        return carLocal;    
+    
    }
 
-   function removeProdutFromCar(product:Product):Car{
-        let carLocal:Car=init;
-        set(
+   function removeProdutFromCar(product:Product):void{
+          set(
             produce((state: State) => {
                 const carLocal:Car= carBusiness.removeProdutFromCar(product,state);
                 updateStateWithCarValua(state,carLocal);
             })
-        );
-        return carLocal;    
+        );            
     } 
 
     function reset():void{

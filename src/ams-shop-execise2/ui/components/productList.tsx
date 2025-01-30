@@ -8,10 +8,11 @@ interface Props {
     totalProdutos:number;
     activePage:number;
     setPage:any;
+    isLoading?:boolean;
 }
 
 export function ProductList(prop:Props) {
-    const {products,totalProdutos, activePage,setPage} = prop;
+    const {products,totalProdutos, activePage,setPage,isLoading} = prop;
 
     const items = products && products.map((item,index) => (
                     <ProductViewer
@@ -23,7 +24,12 @@ export function ProductList(prop:Props) {
 
     return (
         <Container>
-               <Center style={{ flexDirection: "column" }}>
+                 {isLoading ? (
+                <Center>
+                    <Loader />
+                </Center>
+            ) : (
+                <Center style={{ flexDirection: "column" }}>
                     {products && (
                         <Accordion variant="contained">
                             {items}
@@ -31,6 +37,7 @@ export function ProductList(prop:Props) {
                     )}
                     <Pagination total={totalProdutos || 0} value={activePage} onChange={setPage} mt="sm"  />
                 </Center>
+            )}              
         </Container>
     );
 };
